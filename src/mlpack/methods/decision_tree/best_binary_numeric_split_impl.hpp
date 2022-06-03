@@ -104,7 +104,7 @@ double BestBinaryNumericSplit<FitnessFunction>::SplitIfBetter(
       ++classCounts(sortedLabels[i], 1);
   }
 
-  for (size_t index = minimum; index < data.n_elem - minimum; ++index)
+  for (size_t index = minimum; index <= data.n_elem - minimum; ++index)
   {
     // Update class weight sums or counts.
     if (UseWeights)
