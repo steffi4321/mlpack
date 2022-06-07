@@ -1177,7 +1177,7 @@ template<typename FitnessFunction,
         template<typename> class CategoricalSplitType,
         typename DimensionSelectionType,
         bool NoRecursion>
-size_t DecisionTree<FitnessFunction,
+std::string DecisionTree<FitnessFunction,
         NumericSplitType,
         CategoricalSplitType,
         DimensionSelectionType,
