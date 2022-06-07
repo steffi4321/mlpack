@@ -487,7 +487,7 @@ class DecisionTree :
   /**
    * Return a string that contains the DOT-representation of the tree
    */
-  std::string getDot(int& num);
+  std::string getDot(int& num) const;
 
  private:
   //! The vector of children.
