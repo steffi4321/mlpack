@@ -479,6 +479,16 @@ class DecisionTree :
    */
   size_t NumClasses() const;
 
+  /**
+   * Get the classProbabilities of the node
+   */
+  arma::vec ClassProbabilities() const { return classProbabilities; }
+
+  /**
+   * Return a string that contains the DOT-representation of the tree
+   */
+  std::string getDot(int& num);
+
  private:
   //! The vector of children.
   std::vector<DecisionTree*> children;
