@@ -1189,6 +1189,7 @@ std::string DecisionTree<FitnessFunction,
         num++;
     } else {
         result += std::to_string(num) + " [label=\"x_" + std::to_string(splitDimension) + " <= " + std::to_string(classProbabilities[0]) + "\"];\n";
+        int vnum = num;
         num++;
         result += std::to_string(vnum) + " -> " + std::to_string(num) + " [label=\"false\"];\n";
         result += children[0]->getDot(num);
