@@ -1171,6 +1171,33 @@ void DecisionTree<FitnessFunction,
   majorityClass = (size_t) maxIndex;
 }
 
+    / Get the number of classes in the tree.
+    template<typename FitnessFunction,
+            template<typename> class NumericSplitType,
+            template<typename> class CategoricalSplitType,
+            typename DimensionSelectionType,
+            bool NoRecursion>
+    size_t DecisionTree<FitnessFunction,
+            NumericSplitType,
+            CategoricalSplitType,
+            DimensionSelectionType,
+            NoRecursion>::getDot(int& num) const
+    {
+        std::string result;
+        if (children.size()>0) {
+            result += std::to_string(num) + " [label=\"actions[0] = " + std::to_string(majorityClass) + ",\"];\n";
+            num++;
+        } else {
+            result += std::to_string(num) + " [label=\"x_" + std::to_string(splitDimension) + " <= " + std::to_string(classProbabilities[0]) + "\"];\n";
+            num++;
+            result += std::to_string(vnum) + " -> " + std::to_string(num) + " [label=\"false\"];\n";
+            result += children[0]->getDot(num);
+            result += std::to_string(vnum) + " -> " + std::to_string(num) + " [label=\"true\"];\n";
+            result += children[1]->getDot(num);
+        }
+        return result;
+    }
+
 } // namespace tree
 } // namespace mlpack
 
