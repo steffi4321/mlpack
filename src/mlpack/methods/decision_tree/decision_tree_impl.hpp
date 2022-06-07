@@ -1181,7 +1181,7 @@ std::string DecisionTree<FitnessFunction,
         NumericSplitType,
         CategoricalSplitType,
         DimensionSelectionType,
-        NoRecursion>::getDot(int& num) const
+        NoRecursion>::getInnerDot(int& num) const
 {
     std::string result;
     if (children.size()==0) {
@@ -1192,12 +1192,31 @@ std::string DecisionTree<FitnessFunction,
         int vnum = num;
         num++;
         result += std::to_string(vnum) + " -> " + std::to_string(num) + " [label=\"false\"];\n";
-        result += children[0]->getDot(num);
+        result += children[0]->getInnerDot(num);
         result += std::to_string(vnum) + " -> " + std::to_string(num) + " [label=\"true\"];\n";
-        result += children[1]->getDot(num);
+        result += children[1]->getInnerDot(num);
     }
     return result;
 }
+
+// Get a representation of the decision-tree in the DOT-format (which is human readable)
+    template<typename FitnessFunction,
+            template<typename> class NumericSplitType,
+            template<typename> class CategoricalSplitType,
+            typename DimensionSelectionType,
+            bool NoRecursion>
+    std::string DecisionTree<FitnessFunction,
+            NumericSplitType,
+            CategoricalSplitType,
+            DimensionSelectionType,
+            NoRecursion>::getDot() const
+    {
+        std::string result = "digraph {\n";
+        int num =0;
+        result += getInnerDot(num);
+        return result+"}";
+    }
+
 
 } // namespace tree
 } // namespace mlpack

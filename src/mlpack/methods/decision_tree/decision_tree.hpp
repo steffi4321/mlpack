@@ -487,13 +487,18 @@ class DecisionTree :
   /**
    * Return a string that contains the DOT-representation of the tree
    */
-  std::string getDot(int& num) const;
+  std::string getDot() const;
 
  private:
   //! The vector of children.
   std::vector<DecisionTree*> children;
   //! The dimension this node splits on.
   size_t splitDimension;
+
+  /**
+   * Return a string that contains the DOT-representation of the tree
+  */
+  std::string getInnerDot(int& num) const;
 
   union
   {
