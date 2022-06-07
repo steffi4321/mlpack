@@ -1184,7 +1184,7 @@ std::string DecisionTree<FitnessFunction,
         NoRecursion>::getDot(int& num) const
 {
     std::string result;
-    if (children.size()>0) {
+    if (children.size()==0) {
         result += std::to_string(num) + " [label=\"actions[0] = " + std::to_string(majorityClass) + ",\"];\n";
         num++;
     } else {
