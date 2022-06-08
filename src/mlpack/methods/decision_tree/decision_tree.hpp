@@ -489,6 +489,11 @@ class DecisionTree :
    */
   std::string getDot() const;
 
+  /**
+   * Returns the number of nodes in the DT
+   */
+  unsigned int size() const;
+
  private:
   //! The vector of children.
   std::vector<DecisionTree*> children;

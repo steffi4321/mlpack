@@ -1217,6 +1217,23 @@ std::string DecisionTree<FitnessFunction,
         return result+"}";
     }
 
+template<typename FitnessFunction,
+        template<typename> class NumericSplitType,
+        template<typename> class CategoricalSplitType,
+        typename DimensionSelectionType,
+        bool NoRecursion>
+unsigned int DecisionTree<FitnessFunction,
+        NumericSplitType,
+        CategoricalSplitType,
+        DimensionSelectionType,
+        NoRecursion>::size() const
+{
+    if (children.size()==0) {
+        return 1;
+    } else {
+        return 1 + children[0]->size() + children[1]->size();
+    }
+}
 
 } // namespace tree
 } // namespace mlpack
